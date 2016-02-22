@@ -55,7 +55,7 @@ public class RaycastController : MonoBehaviour {
         horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);
         verticalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);
 
-        //no we calculate spacing between each ray
+        //now we calculate spacing between each ray
         horizontalRaySpacing = bounds.size.y / (horizontalRayCount - 1);
         verticalRaySpacing = bounds.size.x / (verticalRayCount - 1);
     }

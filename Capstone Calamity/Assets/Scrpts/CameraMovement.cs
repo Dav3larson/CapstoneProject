@@ -101,7 +101,7 @@ public class CameraMovement : MonoBehaviour {
             }
         }
 
-        Debug.Log("Smooth Velocity X " + smoothLookVelocityX);
+        //Debug.Log("Smooth Velocity X " + smoothLookVelocityX);
         currentLookAheadX = Mathf.SmoothDamp(currentLookAheadX, targetLookAheadX, ref smoothLookVelocityX, lookSmoothTimeX);//this is how far we'll get there this frame
         focusPosition += Vector2.right * currentLookAheadX;
         focusPosition.y = Mathf.SmoothDamp(transform.position.y, focusPosition.y, ref smoothVelocityY, verticalSmoothTime);

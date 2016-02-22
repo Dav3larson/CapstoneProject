@@ -44,7 +44,7 @@ public class Controller2D : RaycastController {
 	//these will give us the updated locations of the rays in relation to the player
 	
 
-	public void Move(Vector3 velocity)
+	public void Move(Vector3 velocity, bool standignOnPlatform=false)
 	{
 		UpdateRaycastOrigins ();
         collisions.Reset();//so its a fresh slate each time
@@ -64,6 +64,10 @@ public class Controller2D : RaycastController {
         }
         
         transform.Translate (velocity);
+        if(standignOnPlatform)
+        {
+            collisions.below = true;
+        }
 	}
 
 	void VerticalCollisions(ref Vector3 velocity)//shallow copy
@@ -140,11 +144,14 @@ public class Controller2D : RaycastController {
 			rayOrigin+= Vector2.up*(horizontalRaySpacing*i);//now that we chose the X, this line finds the Ys along the collider.
 
 			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
-			Debug.DrawRay(rayOrigin,Vector2.right*rayLength*directionX,Color.red);
+			Debug.DrawRay(rayOrigin,Vector2.right*rayLength*directionX,Color.red); ;
 
             if (hit)//if the raycast hits something
             {
-
+                if (hit.distance == 0)
+                {
+                    continue;
+                }
 
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
                 if (i == 0 && slopeAngle <= maxClimbAngle)//i==0 because only the first line detects the slope

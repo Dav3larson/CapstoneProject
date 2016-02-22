@@ -2,6 +2,5 @@ C:\Users\Dav3l_000\Documents\Unity Projects\Capstone Calamity\Temp\UnityVS_bin\D
 C:\Users\Dav3l_000\Documents\Unity Projects\Capstone Calamity\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
 C:\Users\Dav3l_000\Documents\Unity Projects\Capstone Calamity\Temp\UnityVS_bin\Debug\UnityEngine.dll
 C:\Users\Dav3l_000\Documents\Unity Projects\Capstone Calamity\Temp\UnityVS_bin\Debug\UnityEngine.xml
-C:\Users\Dav3l_000\Documents\Unity Projects\Capstone Calamity\Temp\UnityVS_obj\Debug\Capstone Calamity.CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Dav3l_000\Documents\Unity Projects\Capstone Calamity\Temp\UnityVS_obj\Debug\Assembly-CSharp.dll
 C:\Users\Dav3l_000\Documents\Unity Projects\Capstone Calamity\Temp\UnityVS_obj\Debug\Assembly-CSharp.pdb
