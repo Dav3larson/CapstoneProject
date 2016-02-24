@@ -5,20 +5,34 @@ using System.Collections.Generic;
 public class PlatformController : RaycastController {
 
     public Vector3 move;
+    public bool reversable;
+    public float speed;
+    int fromWaypointIndex;
+    float percentBetweenWaypoints;
     public LayerMask passengerMask;
     List<PassengerMovement> passengerList;
     Dictionary<Transform, Controller2D> passengerDictionary = new Dictionary<Transform, Controller2D>();
+
+    public Vector3[] localWaypoints;
+    public Vector3[] globalWaypoints;
+
     public override void Start()
     {
         base.Start();
+        globalWaypoints = new Vector3[localWaypoints.Length];
+        for(int i = 0; i < localWaypoints.Length; i++)
+        {
+            //for every local waypoints we have set, convert them to the global waypoints
+            globalWaypoints[i] = localWaypoints[i] + transform.position;
 
+        }
     }
 
     // Update is called once per frame
     void Update ()
     {
         UpdateRaycastOrigins();
-        Vector3 velocity = move * Time.deltaTime;
+        Vector3 velocity = GetSpeed();
         CalculateMovement(velocity);
         MovePassengers(true);
         transform.Translate(velocity);
@@ -41,7 +55,30 @@ public class PlatformController : RaycastController {
             }
         }
     }
-
+    Vector3 GetSpeed()
+    {
+        int toWaypointIndex = fromWaypointIndex + 1;
+        float distance = Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex]);
+        //percentage should increase slower the further the waypoints
+        percentBetweenWaypoints += Time.deltaTime * speed/distance;
+        //use linear interpolation to find the point between waypoints. Our % will tell us how far we are along the way to it.
+        Vector3 newPosition = Vector3.Lerp(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex], percentBetweenWaypoints);
+        if(percentBetweenWaypoints>=1)
+        {
+            percentBetweenWaypoints = 0;
+            fromWaypointIndex++;
+            if(fromWaypointIndex>=globalWaypoints.Length-1)
+            {
+                fromWaypointIndex = 0;
+                if(reversable)
+                {
+                    System.Array.Reverse(globalWaypoints);
+                }
+                
+            }
+        }
+        return newPosition - transform.position;
+    }
     //moves any Controller2D on the platform
     void CalculateMovement(Vector3 velocity)
     {
@@ -151,6 +188,22 @@ public class PlatformController : RaycastController {
             velocity = newVelcoity;
             standingOnPlatform = isStanding;
             moveBeforePlatform = moved;
+        }
+    }
+    void OnDrawGizmos()
+    {
+        if(localWaypoints!=null)
+        {
+            Gizmos.color = Color.white;
+            float size = .3f;
+            for(int i=0; i< localWaypoints.Length;i++)
+            {
+                //if we're playing, then we'll show the global waypoints, otherwise we'll just show the local.
+                //this way you can see the changes in comparison to the platform's location but when we start playing you'll see what their locations are exactly
+                Vector3 globalPoints =(Application.isPlaying)?globalWaypoints[i]: localWaypoints[i] + transform.position;
+                Gizmos.DrawLine(globalPoints - Vector3.up * size, globalPoints + Vector3.up * size);
+                Gizmos.DrawLine(globalPoints - Vector3.left * size, globalPoints + Vector3.left * size);
+            }
         }
     }
 }
