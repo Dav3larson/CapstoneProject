@@ -8,7 +8,7 @@ public class GreenKoopa : Enemy {
     {
 
         base.Start();
-        velocity = new Vector3(-5f, -5, 0);
+        velocity = new Vector3(0f, -5, 0);
     }
     public override void Move()
     {
