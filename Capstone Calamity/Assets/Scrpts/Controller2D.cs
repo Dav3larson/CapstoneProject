@@ -2,23 +2,15 @@
 using System.Collections;
 
 
-[RequireComponent (typeof (BoxCollider2D))]//Doing this ensures the gameobject this is attached to will have a BoxCollider2D
 public class Controller2D : RaycastController {
 
-	
-	
-	
     public int hitPoints = 10;
-
     float maxClimbAngle = 80;
     float maxDescendAngle = 75;
 
 
 	
     public CollisionInfo collisions; 
-
-
-	// Use this for initialization
 
 
 	
@@ -144,7 +136,7 @@ public class Controller2D : RaycastController {
 			rayOrigin+= Vector2.up*(horizontalRaySpacing*i);//now that we chose the X, this line finds the Ys along the collider.
 
 			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
-			Debug.DrawRay(rayOrigin,Vector2.right*rayLength*directionX,Color.red); ;
+			Debug.DrawRay(rayOrigin,Vector2.right*rayLength*directionX,Color.red);
 
             if (hit)//if the raycast hits something
             {

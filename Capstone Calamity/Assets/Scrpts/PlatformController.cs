@@ -57,7 +57,7 @@ public class PlatformController : RaycastController {
     }
     Vector3 GetSpeed()
     {
-        int toWaypointIndex = fromWaypointIndex + 1;
+        int toWaypointIndex = (fromWaypointIndex + 1)%globalWaypoints.Length;
         float distance = Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex]);
         //percentage should increase slower the further the waypoints
         percentBetweenWaypoints += Time.deltaTime * speed/distance;

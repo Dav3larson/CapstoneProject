@@ -21,7 +21,8 @@ public class Player : MonoBehaviour {
 
     float velocityXSmoothing;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		controller = GetComponent<Controller2D> ();
         gravity = -(2 * jumpHeight) / Mathf.Pow(jumpTime, 2);//derived from kinematic equations. PHYSICS!
         jumpSpeed = Mathf.Abs(gravity) * jumpTime;
@@ -30,7 +31,8 @@ public class Player : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         if(didDie)
         {
             //Debug.Log("X: " + velocity.x + ", Y:" + velocity.y);

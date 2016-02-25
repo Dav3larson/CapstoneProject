@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+[RequireComponent (typeof (BoxCollider2D))]//Doing this ensures the gameobject this is attached to will have a BoxCollider2D
 public class RaycastController : MonoBehaviour {
     
     [HideInInspector]
@@ -35,7 +37,7 @@ public class RaycastController : MonoBehaviour {
     }
 
 
-    public void UpdateRaycastOrigins()
+    public virtual void UpdateRaycastOrigins()
     {
         Bounds bounds = thisCollider.bounds;
         //expanding the extends by SKINWIDTH will shrink it to the small amounts we need

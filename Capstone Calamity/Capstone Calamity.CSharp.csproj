@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scrpts\CameraMovement.cs" />
     <Compile Include="Assets\Scrpts\Checkpoint.cs" />
     <Compile Include="Assets\Scrpts\CollisionChecker.cs" />
+    <Compile Include="Assets\Scrpts\Combustable.cs" />
     <Compile Include="Assets\Scrpts\Controller2D.cs" />
     <Compile Include="Assets\Scrpts\Enemy.cs" />
     <Compile Include="Assets\Scrpts\Fireball.cs" />
