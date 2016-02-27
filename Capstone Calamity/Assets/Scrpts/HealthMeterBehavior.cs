@@ -4,7 +4,7 @@ using System.Collections;
 public class HealthMeterBehavior : MonoBehaviour 
 {
 	public int HP; //used as index and heart count
-	public int scaleX=5,scaleY=15,spacing=0; //deals with size and spacing of each heart(unit of HP)
+	public int scaleX=020,scaleY=20,spacing=30; //deals with size and spacing of each heart(unit of HP)
 	private Controller2D PC; 
 	public Transform heart;//Prefab for the heart image
 	public ArrayList heartMeter;

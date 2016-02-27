@@ -61,16 +61,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scrpts\Block.cs" />
     <Compile Include="Assets\Scrpts\CameraMovement.cs" />
     <Compile Include="Assets\Scrpts\Checkpoint.cs" />
     <Compile Include="Assets\Scrpts\CollisionChecker.cs" />
-    <Compile Include="Assets\Scrpts\Combustable.cs" />
+    <Compile Include="Assets\Scrpts\Combustible.cs" />
     <Compile Include="Assets\Scrpts\Controller2D.cs" />
     <Compile Include="Assets\Scrpts\Enemy.cs" />
     <Compile Include="Assets\Scrpts\Fireball.cs" />
     <Compile Include="Assets\Scrpts\GreenKoopa.cs" />
     <Compile Include="Assets\Scrpts\HealthMeterBehavior.cs" />
     <Compile Include="Assets\Scrpts\Heart.cs" />
+    <Compile Include="Assets\Scrpts\Ladder.cs" />
     <Compile Include="Assets\Scrpts\PlatformController.cs" />
     <Compile Include="Assets\Scrpts\Player.cs" />
     <Compile Include="Assets\Scrpts\RacastController.cs" />

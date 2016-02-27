@@ -6,7 +6,7 @@ public class Controller2D : RaycastController {
 
     public int hitPoints = 10;
     float maxClimbAngle = 80;
-    float maxDescendAngle = 75;
+    float maxDescendAngle = 80;
 
 
 	

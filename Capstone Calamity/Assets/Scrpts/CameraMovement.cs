@@ -105,6 +105,8 @@ public class CameraMovement : MonoBehaviour {
         currentLookAheadX = Mathf.SmoothDamp(currentLookAheadX, targetLookAheadX, ref smoothLookVelocityX, lookSmoothTimeX);//this is how far we'll get there this frame
         focusPosition += Vector2.right * currentLookAheadX;
         focusPosition.y = Mathf.SmoothDamp(transform.position.y, focusPosition.y, ref smoothVelocityY, verticalSmoothTime);
+        
+        
         transform.position = (Vector3)focusPosition + Vector3.forward * -10;
     }
     void OnDrawGizmos()

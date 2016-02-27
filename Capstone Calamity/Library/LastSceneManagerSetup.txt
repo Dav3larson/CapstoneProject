@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Death and Respawn.unity
+- path: Assets/Crate bait.unity
   isLoaded: 1
   isActive: 1

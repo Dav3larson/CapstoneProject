@@ -21,13 +21,17 @@ public class Checkpoint : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if(!playerCollider.gameObject.activeSelf
+        //if the player isn't active and we're the last checkpoint they hit, let's prepare to respawn them!
+        if(player.didDie
             &&Time.realtimeSinceStartup>timeSinceDeath+deadTime
             &&this==player.lastCheckPoint)
         {
             playerCollider.gameObject.SetActive(true);
             player.heal(player.maxHitPoint);
             playerCollider.transform.position = new Vector3(transform.position.x, transform.position.y);
+            player.didDie = false;
+            player.velocity = new Vector3(0, player.jumpSpeed / 1.5f, 0);
+            player.controller.collisions.Reset();
         }
         if (CollisionChecker.checkSide(playerCollider, thisCollider) != CollisionChecker.MISS)
         {
@@ -43,13 +47,14 @@ public class Checkpoint : MonoBehaviour {
     public void respawn()
     {
         playerCollider.gameObject.SetActive(false);
-        
+        player.didDie = true;
         timeSinceDeath = Time.realtimeSinceStartup;
         //Debug.Log("Previous velocity: " + player.velocity.x + " " + player.velocity.y);
-        player.velocity = new Vector3(0, player.jumpSpeed/1.5f, 0);
-       // Debug.Log("current velocity: " + player.velocity.x + " " + player.velocity.y);
-        player.didDie = true;
-        player.controller.collisions.Reset();
+        
+        player.velocity = new Vector3(0, player.jumpSpeed / 1.5f, 0);
+        // Debug.Log("current velocity: " + player.velocity.x + " " + player.velocity.y);
+
+
         //playerCollider.transform.position = new Vector3(transform.position.x, transform.position.y);
     }
 }
