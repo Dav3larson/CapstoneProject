@@ -23,8 +23,7 @@ public class Combustible : RaycastController {
         inside = false;
         Bounds bounds = GetComponent<BoxCollider2D>().bounds;
        
-        verticalRayCount =(int)bounds.size.x*2;
-        horizontalRayCount = (int)bounds.size.y*2;
+        
     }
 
     // Update is called once per frame

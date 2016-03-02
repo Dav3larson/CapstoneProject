@@ -21,17 +21,12 @@ public class Checkpoint : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //if the player isn't active and we're the last checkpoint they hit, let's prepare to respawn them!
-        if(player.didDie
-            &&Time.realtimeSinceStartup>timeSinceDeath+deadTime
-            &&this==player.lastCheckPoint)
+        //Let's check if we should respawn the player
+        if(player.playerState==Player.PlayerState.Dead//yo, you dead?
+            &&Time.realtimeSinceStartup>timeSinceDeath+deadTime//have you been dead long enough?
+            &&this==player.lastCheckPoint)//is it my job 
         {
-            playerCollider.gameObject.SetActive(true);
-            player.heal(player.maxHitPoint);
-            playerCollider.transform.position = new Vector3(transform.position.x, transform.position.y);
-            player.didDie = false;
-            player.velocity = new Vector3(0, player.jumpSpeed / 1.5f, 0);
-            player.controller.collisions.Reset();
+            player.Respawn();
         }
         if (CollisionChecker.checkSide(playerCollider, thisCollider) != CollisionChecker.MISS)
         {
@@ -44,17 +39,8 @@ public class Checkpoint : MonoBehaviour {
             //Debug.Log("Burning! we're burning!");
         }
     }
-    public void respawn()
-    {
-        playerCollider.gameObject.SetActive(false);
-        player.didDie = true;
+    public void SetRespawnTime()
+    {        
         timeSinceDeath = Time.realtimeSinceStartup;
-        //Debug.Log("Previous velocity: " + player.velocity.x + " " + player.velocity.y);
-        
-        player.velocity = new Vector3(0, player.jumpSpeed / 1.5f, 0);
-        // Debug.Log("current velocity: " + player.velocity.x + " " + player.velocity.y);
-
-
-        //playerCollider.transform.position = new Vector3(transform.position.x, transform.position.y);
     }
 }
