@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Sign : RaycastController
-{
-    [HideInInspector]
+public class Sign_Combustable : Combustible {
+
+    
     public TextboxManager tbm;
 
     public TextAsset textFile;
@@ -18,8 +18,13 @@ public class Sign : RaycastController
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
+        base.Update();
+        if (burntOut)
+        {
+            return;
+        }
         UpdateRaycastOrigins();
         float rayLength = .5f;// Mathf.Abs(SKINWIDTH * 1.5f);
 
@@ -60,13 +65,13 @@ public class Sign : RaycastController
     public void Read()
     {
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (input.y>0)
+        if (input.y > 0)
         {
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             player.playerState = Player.PlayerState.Reading;
-            
-                if (tbm)
-                {
+
+            if (tbm)
+            {
                 //Debug.Log("Found the manager!");
                 if (textFile)
                 {
@@ -77,7 +82,7 @@ public class Sign : RaycastController
                     tbm.Enable();
                 }
 
-                }
+            }
         }
     }
 }

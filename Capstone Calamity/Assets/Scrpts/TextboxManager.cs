@@ -4,18 +4,19 @@ using UnityEngine.UI;
 
 public class TextboxManager : MonoBehaviour
 {
-    public GameObject textbox;
-    public Text content;
-
     public TextAsset textFile;
-    public string[] textLines;
+    private int firstLine=0;
     public int currentLine;
     public int lastLine;
+
+    public GameObject textbox;
+    public Text content;
+    public string[] textLines;
+   
 
     public Player player;
     void Start()
     {
-
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         //Make Player state for text box
         if (textFile)
@@ -27,6 +28,7 @@ public class TextboxManager : MonoBehaviour
             lastLine = textLines.Length - 1;
         }
         gameObject.SetActive(false);
+        content.text = null;
     }
 
     void Update()
@@ -37,7 +39,7 @@ public class TextboxManager : MonoBehaviour
         {
             currentLine=(currentLine+1);
         }
-        if(currentLine>=textLines.Length)
+        if(currentLine>=lastLine)
         {
             Disable(); 
         }
@@ -46,10 +48,22 @@ public class TextboxManager : MonoBehaviour
     {
         gameObject.SetActive(true);
     }
+    public void Enable(TextAsset file, int start, int end)
+    {
+        Debug.Log("Enable worked!");
+        gameObject.SetActive(true);
+        textFile = file;
+        firstLine = start;
+        currentLine = start;
+        lastLine = end;
+        textLines = (textFile.text.Split('\n'));//we seperate all the text by lines
+        Debug.Log(textFile.text);
+    }
     public void Disable()
     {
         gameObject.SetActive(false);
-        currentLine = 0;
+        currentLine = firstLine;
         player.playerState = Player.PlayerState.Standing;
+        content.text = "";
     }
 }
