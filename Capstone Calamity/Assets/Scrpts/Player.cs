@@ -112,6 +112,8 @@ public class Player : MonoBehaviour {
 		velocity.y += gravity * Time.deltaTime;
         
 		controller.Move (velocity * Time.deltaTime);
+       
+
         if (velocity.y < 0 && !controller.collisions.below)
         {
             playerState = PlayerState.Falling;//if we're going down and there is nothing to stand on we're falling!

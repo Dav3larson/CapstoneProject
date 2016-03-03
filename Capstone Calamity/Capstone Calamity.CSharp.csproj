@@ -77,7 +77,6 @@
     <Compile Include="Assets\Scrpts\Player.cs" />
     <Compile Include="Assets\Scrpts\RaycastController.cs" />
     <Compile Include="Assets\Scrpts\Sign.cs" />
-    <Compile Include="Assets\Scrpts\TextImport.cs" />
     <Compile Include="Assets\Scrpts\TextboxManager.cs" />
   </ItemGroup>
   <ItemGroup>
